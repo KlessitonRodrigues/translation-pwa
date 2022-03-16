@@ -1,6 +1,6 @@
-import { ActionsTypes } from "./actions";
+import { State, ActionTypes } from "../types";
 
-export const initialState = {
+export const initialState: State = {
   language: {
     from: {
       name: "portugues",
@@ -15,12 +15,14 @@ export const initialState = {
     fromText: "",
     toText: "",
   },
+  langs: [["", ""]],
+  toggle: {
+    langModal: "",
+  },
 };
 
-export type State = typeof initialState;
-
 export function reducer(state: State, action: ActionsTypes): State {
-  const { form } = state;
+  const { form, toggle } = state;
 
   switch (action.type) {
     case "SET_FROM_INPUT":
@@ -40,6 +42,18 @@ export function reducer(state: State, action: ActionsTypes): State {
 
     case "CLEAR_INPUTS":
       return { ...state, form: initialState.form };
+
+    case "CLOSE_LANGS_MODEL":
+      toggle.langModal = "";
+      return { ...state, toggle };
+
+    case "TOGGLE_FROM_LANGS_MODEL":
+      toggle.langModal = "from";
+      return { ...state, toggle };
+
+    case "TOGGLE_TO_LANGS_MODEL":
+      toggle.langModal = "from";
+      return { ...state, toggle };
 
     default:
       return state;

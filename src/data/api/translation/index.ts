@@ -1,18 +1,13 @@
-import fetchData from "../fetch/translation";
-
-export type Responses = {
-  LangsRes: { codes: Record<string, string> };
-  TransRes: { translated_text: string; from_lang: string };
-  DictionaryRes: { rows: number; pages: number; results: string[] };
-};
+import fetchData from "../../fetch/translation";
+import { Responses } from "./types";
 
 export default class TranslationAPI {
-  static langsCache = { success: false, data: {} };
+  static langsCache = { success: false, data: [["", ""]] };
 
   static async getSuportedLangs() {
-    if (this.langsCache?.success) return { success: true, msg: "", data: this.langsCache };
+    if (this.langsCache?.success) return { success: true, msg: "", data: this.langsCache.data };
     const res = await fetchData<Responses["LangsRes"]>("/getLanguages");
-    if (res.data?.codes) this.langsCache = res;
+    if (res.success) this.langsCache = res;
     return res;
   }
 
@@ -20,6 +15,8 @@ export default class TranslationAPI {
     const res = await fetchData<Responses["TransRes"]>("/translate", {
       body: new URLSearchParams({ text, from, to }),
     });
+    console.log(res);
+    
     return res;
   }
 

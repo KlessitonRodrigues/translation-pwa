@@ -1,24 +1,17 @@
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 
+import { TranslationButtonsProps as Props } from "../../types";
 import ToggleTextButton from "../../../../templates/buttons/toggleTextButton";
-import BroomIcon from "../../../../assets/fluencyIcons/Broom.svg";
+import EraseIcon from "../../../../assets/fluencyIcons/Erase.svg";
 import RepeatIcon from "../../../../assets/fluencyIcons/Repeat.svg";
 import TranslationIcon from "../../../../assets/fluencyIcons/TranslationWhite.svg";
 import BookIcon from "../../../../assets/fluencyIcons/Book.svg";
 import VoiceIcon from "../../../../assets/fluencyIcons/Voice.svg";
 
-type Props = {
-  onTranslate: () => void;
-  onClear: () => void;
-  onInvert: () => void;
-  onDicionary: () => void;
-  onSpeak: () => void;
-};
-
 export default function Buttons(props: Props) {
   return (
-    <Box display="flex" m={1}>
+    <Box display="flex" m={2}>
       <Button
         onClick={() => props.onTranslate()}
         startIcon={<TranslationIcon />}
@@ -29,7 +22,7 @@ export default function Buttons(props: Props) {
       </Button>
       <ToggleTextButton
         onClick={() => props.onClear()}
-        startIcon={<BroomIcon />}
+        startIcon={<EraseIcon />}
         variant="text"
         size="small"
       >

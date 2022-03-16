@@ -5,7 +5,7 @@ const useStyles = makeStyles({
   ToggleTextButton: {
     whiteSpace: "nowrap",
     "& b": {
-      transition: "1s",
+      transition: "1.2s",
       maxWidth: "0px",
       opacity: 0,
     },

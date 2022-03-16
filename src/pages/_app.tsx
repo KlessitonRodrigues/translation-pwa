@@ -29,7 +29,7 @@ export default function MyApp(props: any) {
         <CssBaseline />
         <Header />
         <Component {...pageProps} />
-        <Notify open={true} progress={false} msg="Loading" serverity="info" onClose={() => ({})} />
+        <Notify open={false} progress={false} msg="Loading" serverity="info" onClose={() => ({})} />
       </ThemeProvider>
     </React.Fragment>
   );

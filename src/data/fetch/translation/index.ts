@@ -1,4 +1,5 @@
-import { responseMock, ResponseType } from "../constants/response";
+import { responseMock, ResponseType } from "../../constants/response";
+import formatRequests from "./formatApiRes";
 
 const url = process.env["NEXT_PUBLIC_RAPIDAPI_URL"] || "";
 
@@ -13,19 +14,11 @@ const reqContent: RequestInit = {
 
 async function fetchTranslation<T>(path: string, content?: RequestInit): Promise<ResponseType<T>> {
   try {
-    console.log({ ...reqContent, ...content });
-
     const res = await fetch(url + path || "", { ...reqContent, ...content });
     const data = await res.json();
-    console.log(`FETCHED: ${path} SUCCESS:${res.ok}`);
 
-    return {
-      success: data?.ok,
-      msg: data?.error,
-      data: { ...data, ok: undefined, error: undefined },
-    };
+    return formatRequests(path, data);
   } catch (err) {
-    console.log(err);
     return responseMock;
   }
 }

@@ -1,18 +1,14 @@
-import { State } from "./reducer";
-import TranslationAPI from "../../../data/api/translationAPI";
-
-export type ActionsTypes =
-  | { type: "ERROR"; payload: string }
-  | { type: "SET_FROM_INPUT"; payload: string }
-  | { type: "SET_TO_INPUT"; payload: string }
-  | { type: "CLEAR_INPUTS" }
-  | { type: "INVERT_INPUTS" }
-  | { type: "TOGGLE_LOADING" };
+import TranslationAPI from "../../../data/api/translation";
+import { ActionTypes, State } from "../types";
 
 const url = "api/translation";
 
 export default class Actions {
   static langsCache = ["pt", "en", "sp", "cn"];
+
+  static setStaticlang(langs: {}) {
+    return;
+  }
 
   static setFromInput(str: string): ActionsTypes {
     return { type: "SET_FROM_INPUT", payload: str };
@@ -32,7 +28,18 @@ export default class Actions {
 
   static async translate({ form, language }: State): Promise<ActionsTypes> {
     const res = await TranslationAPI.translateTo(form.fromText, language.to.id);
-    console.log(res, form.fromText, language.to.id);
-    return { type: "SET_TO_INPUT", payload: res.data.translated_text || "" };
+    return { type: "SET_TO_INPUT", payload: res.data || "" };
+  }
+
+  static toggleLangsModal(): ActionsTypes {
+    return { type: "CLOSE_LANGS_MODEL" };
+  }
+
+  static toggleFromLangsModal(): ActionsTypes {
+    return { type: "TOGGLE_FROM_LANGS_MODEL" };
+  }
+
+  static toggleToLangsModal(): ActionsTypes {
+    return { type: "TOGGLE_TO_LANGS_MODEL" };
   }
 }

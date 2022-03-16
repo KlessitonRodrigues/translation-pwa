@@ -1,9 +1,11 @@
-import type { NextPage } from "next";
+import Link from "next/link";
 
-import Translation from "../components/translation";
-
-const Home: NextPage = () => {
-  return <Translation />;
+const App = () => {
+  return (
+    <div>
+      <Link href="/home">home</Link>
+    </div>
+  );
 };
 
-export default Home;
+export default App;
