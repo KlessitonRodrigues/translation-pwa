@@ -1,5 +1,5 @@
 export type Responses = {
-  LangsRes: [string, string][];
-  TransRes: string;
+  LangsRes: { code: string; name: string }[];
+  TransRes: { text: string; from: string };
   DictionaryRes: string[];
 };

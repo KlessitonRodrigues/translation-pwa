@@ -9,11 +9,11 @@ import TranslationIcon from "../../../../assets/fluencyIcons/TranslationWhite.sv
 import BookIcon from "../../../../assets/fluencyIcons/Book.svg";
 import VoiceIcon from "../../../../assets/fluencyIcons/Voice.svg";
 
-export default function Buttons(props: Props) {
+export default function Buttons({ actions }: Props) {
   return (
     <Box display="flex" m={2}>
       <Button
-        onClick={() => props.onTranslate()}
+        onClick={() => actions.onTranslate()}
         startIcon={<TranslationIcon />}
         variant="contained"
         size="small"
@@ -21,7 +21,7 @@ export default function Buttons(props: Props) {
         <b>Translate</b>
       </Button>
       <ToggleTextButton
-        onClick={() => props.onClear()}
+        onClick={() => actions.onClear()}
         startIcon={<EraseIcon />}
         variant="text"
         size="small"
@@ -29,7 +29,7 @@ export default function Buttons(props: Props) {
         <b>Clear Fields</b>
       </ToggleTextButton>
       <ToggleTextButton
-        onClick={() => props.onInvert()}
+        onClick={() => actions.onInvert()}
         startIcon={<RepeatIcon />}
         variant="text"
         size="small"
@@ -37,7 +37,7 @@ export default function Buttons(props: Props) {
         <b>Invert</b>
       </ToggleTextButton>
       <ToggleTextButton
-        onClick={() => props.onDicionary()}
+        onClick={() => actions.onDicionary()}
         startIcon={<BookIcon />}
         variant="text"
         size="small"
@@ -45,7 +45,7 @@ export default function Buttons(props: Props) {
         <b>Dictionary</b>
       </ToggleTextButton>
       <ToggleTextButton
-        onClick={() => props.onSpeak()}
+        onClick={() => actions.onSpeak()}
         startIcon={<VoiceIcon />}
         variant="text"
         size="small"

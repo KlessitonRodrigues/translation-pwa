@@ -1,59 +1,66 @@
 import { State, ActionTypes } from "../types";
 
 export const initialState: State = {
-  language: {
-    from: {
-      name: "portugues",
-      id: "pt",
-    },
-    to: {
-      name: "english",
-      id: "en",
-    },
+  translate: {
+    fromLang: { code: "pt", name: "Portugues", text: "" },
+    targetLang: { code: "en", name: "English", text: "", dictionary: [] },
   },
-  form: {
-    fromText: "",
-    toText: "",
-  },
-  langs: [["", ""]],
   toggle: {
-    langModal: "",
+    selectLangModal: "",
+  },
+  ssr: {
+    langs: [],
   },
 };
 
-export function reducer(state: State, action: ActionsTypes): State {
-  const { form, toggle } = state;
+export function reducer(state: State, action: ActionTypes): State {
+  const { translate, toggle } = state;
 
   switch (action.type) {
-    case "SET_FROM_INPUT":
-      return { ...state, form: { toText: form.toText, fromText: action.payload } };
+    case "SET_FROM_LANG":
+      return { ...state, translate: { ...translate, fromLang: action.payload } };
 
-    case "SET_TO_INPUT":
-      return { ...state, form: { fromText: form.fromText, toText: action.payload } };
+    case "SET_TARGET_LANG":
+      return { ...state, translate: { ...translate, targetLang: action.payload } };
 
     case "ERROR":
       return state;
 
-    case "INVERT_INPUTS":
+    case "INVERT_LANGS":
       return {
         ...state,
-        form: { fromText: form.toText, toText: form.fromText },
+        translate: {
+          fromLang: {
+            code: translate.targetLang.code,
+            name: translate.targetLang.name,
+            text: translate.targetLang.text,
+          },
+          targetLang: {
+            code: translate.fromLang.code,
+            name: translate.fromLang.name,
+            text: translate.fromLang.text,
+            dictionary: [],
+          },
+        },
       };
 
     case "CLEAR_INPUTS":
-      return { ...state, form: initialState.form };
+      return {
+        ...state,
+        translate: {
+          fromLang: {
+            ...translate.fromLang,
+            text: "",
+          },
+          targetLang: {
+            ...translate.targetLang,
+            text: "",
+          },
+        },
+      };
 
-    case "CLOSE_LANGS_MODEL":
-      toggle.langModal = "";
-      return { ...state, toggle };
-
-    case "TOGGLE_FROM_LANGS_MODEL":
-      toggle.langModal = "from";
-      return { ...state, toggle };
-
-    case "TOGGLE_TO_LANGS_MODEL":
-      toggle.langModal = "from";
-      return { ...state, toggle };
+    case "SET_LANGS_MODEL":
+      return { ...state, toggle: { ...toggle, selectLangModal: action.payload } };
 
     default:
       return state;

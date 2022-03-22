@@ -12,34 +12,41 @@ import TranslationHeader from "./templates/header";
 import { TranslationProps as Props } from "./types";
 
 export default function Translation(props: Props) {
-  const [state, dispatch] = useReducer(reducer, { ...initialState, langs: props.langs });
+  const [state, dispatch] = useReducer(reducer, { ...initialState, ssr: props.ssr });
 
   return (
-    <Slide in direction="left">
+    <Slide in direction="up">
       <Box width="100%" display="flex" flexDirection="column" margin="auto">
         <TranslationHeader
-          formLangClick={() => dispatch(Actions.toggleFromLangsModal())}
-          toLangClick={() => dispatch(Actions.toggleToLangsModal())}
-          language={state.language}
+          state={state}
+          actions={{
+            formLangClick: (v) => dispatch(Actions.setLangsModal(v)),
+            targetLangClick: (v) => dispatch(Actions.setLangsModal(v)),
+          }}
         />
         <LangSelection
-          langs={state.langs}
-          isOpen={!!state.toggle.langModal}
-          toggleOpen={() => dispatch(Actions.toggleLangsModal())}
+          state={state}
+          actions={{
+            setModel: (v) => dispatch(Actions.setLangsModal(v)),
+          }}
         />
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
           <TranslationField
-            value={state.form.fromText}
-            onChange={(v) => dispatch(Actions.setFromInput(v))}
+            state={state}
+            actions={{
+              onChange: (v) => dispatch(Actions.setFromLang(v)),
+            }}
           />
           <Buttons
-            onTranslate={async () => dispatch(await Actions.translate(state))}
-            onClear={() => dispatch(Actions.clearInputs())}
-            onInvert={() => dispatch(Actions.invertInputs())}
-            onDicionary={() => {}}
-            onSpeak={() => {}}
+            actions={{
+              onTranslate: async () => dispatch(await Actions.translate(state)),
+              onClear: () => dispatch(Actions.clearInputs()),
+              onInvert: () => dispatch(Actions.invertInputs()),
+              onDicionary: () => {},
+              onSpeak: () => {},
+            }}
           />
-          <TranslationDisplay value={state.form.toText} />
+          <TranslationDisplay state={state} />
         </Box>
       </Box>
     </Slide>

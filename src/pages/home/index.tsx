@@ -2,11 +2,11 @@ import Translation from "../../components/translation";
 import TranslationAPI from "../../data/api/translation";
 
 type Props = {
-  langs: string[][];
+  langs: { code: string; name: string }[];
 };
 
 export default function Home(props: Props) {
-  return <Translation langs={props.langs} />;
+  return <Translation ssr={{ langs: props.langs }} />;
 }
 
 export async function getStaticProps(): Promise<{ props: Props }> {

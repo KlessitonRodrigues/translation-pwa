@@ -6,6 +6,7 @@ export const HearderBox = styled(Box)(({ theme: { spacing, palette } }) => ({
   padding: spacing(2),
   display: "flex",
   alignItems: "center",
+  // @ts-ignore
   backgroundColor: palette.primary[50],
   borderRadius: spacing(2),
   margin: spacing(2) + " auto",

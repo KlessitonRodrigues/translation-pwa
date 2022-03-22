@@ -1,54 +1,88 @@
-export type TranslationProps = {
-  langs: string[][];
+export type Translate = {
+  fromLang: { code: string; name: string; text: string };
+  targetLang: { code: string; name: string; text: string; dictionary: [] };
 };
 
-export type TranslationHeaderProps = {
-  language: State["language"];
-  formLangClick: () => any;
-  toLangClick: () => any;
+export type Toggle = {
+  selectLangModal: "" | "setFromLang" | "setTargetLang";
 };
 
-export type TranslationDisplayProps = {
-  value?: string;
-  mode?: "translation" | "dictionary" | "speak";
+export type ServerSideRender = {
+  langs: { code: string; name: string }[];
 };
 
-export type TranslationButtonsProps = {
-  onTranslate: () => void;
-  onClear: () => void;
-  onInvert: () => void;
-  onDicionary: () => void;
-  onSpeak: () => void;
+export type State = {
+  translate: Translate;
+  toggle: Toggle;
+  ssr: ServerSideRender;
 };
 
 export type ActionTypes =
   | { type: "ERROR"; payload: string }
-  | { type: "SET_FROM_INPUT"; payload: string }
-  | { type: "SET_TO_INPUT"; payload: string }
+  | { type: "SET_FROM_LANG"; payload: Translate["fromLang"] }
+  | { type: "SET_TARGET_LANG"; payload: Translate["targetLang"] }
   | { type: "CLEAR_INPUTS" }
-  | { type: "INVERT_INPUTS" }
+  | { type: "INVERT_LANGS" }
   | { type: "TOGGLE_LOADING" }
-  | { type: "TOGGLE_FROM_LANGS_MODEL" }
-  | { type: "TOGGLE_TO_LANGS_MODEL" }
-  | { type: "CLOSE_LANGS_MODEL" };
+  | { type: "SET_LANGS_MODEL"; payload: Toggle["selectLangModal"] };
 
-export type State = {
-  language: {
-    from: {
-      name: string;
-      id: string;
-    };
-    to: {
-      name: string;
-      id: string;
-    };
+export type TranslationProps = {
+  ssr: ServerSideRender;
+};
+
+export type TranslationHeaderProps = {
+  state: State;
+  actions: {
+    formLangClick: (v: Toggle["selectLangModal"]) => any;
+    targetLangClick: (v: Toggle["selectLangModal"]) => any;
   };
-  form: {
-    fromText: string;
-    toText: string;
+};
+
+export type TranslationDisplayProps = {
+  state: State;
+};
+
+export type TranslationButtonsProps = {
+  actions: {
+    onTranslate: () => any;
+    onClear: () => any;
+    onInvert: () => any;
+    onDicionary: () => any;
+    onSpeak: () => any;
   };
-  langs: string[][];
-  toggle: {
-    langModal: string;
+};
+
+export type LangSelectionProps = {
+  state: State;
+  actions: {
+    setModel?: (v: Toggle["selectLangModal"]) => any;
+    onClick?: (code: string) => any;
   };
+};
+
+export type RenderLangsItem = {
+  code: string;
+  name: string;
+  show: boolean;
+  onClick: (v: string) => any;
+};
+
+export type TranslationInputProps = {
+  state: State;
+  actions: {
+    onChange?: (v: Translate["fromLang"]) => any;
+  };
+  disabled?: boolean;
+};
+
+export type RenderLangsSelectionsProps = {
+  langs: ServerSideRender["langs"];
+  search: string;
+  onClick: (lang: ServerSideRender["langs"][0]) => any;
+};
+
+export type LangItemProps = {
+  show: boolean;
+  lang: ServerSideRender["langs"][0];
+  onClick: (lang: ServerSideRender["langs"][0]) => any;
 };

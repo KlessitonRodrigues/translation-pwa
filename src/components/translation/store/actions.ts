@@ -1,45 +1,35 @@
 import TranslationAPI from "../../../data/api/translation";
-import { ActionTypes, State } from "../types";
-
-const url = "api/translation";
+import { ActionTypes, State, Toggle, Translate } from "../types";
 
 export default class Actions {
-  static langsCache = ["pt", "en", "sp", "cn"];
-
-  static setStaticlang(langs: {}) {
-    return;
+  static setFromLang(fromLang: Translate["fromLang"]): ActionTypes {
+    return { type: "SET_FROM_LANG", payload: fromLang };
   }
 
-  static setFromInput(str: string): ActionsTypes {
-    return { type: "SET_FROM_INPUT", payload: str };
+  static setTargetLang(targetLang: Translate["targetLang"]): ActionTypes {
+    return { type: "SET_FROM_LANG", payload: targetLang };
   }
 
-  static setToInput(str: string): ActionsTypes {
-    return { type: "SET_TO_INPUT", payload: str };
-  }
-
-  static clearInputs(): ActionsTypes {
+  static clearInputs(): ActionTypes {
     return { type: "CLEAR_INPUTS" };
   }
 
-  static invertInputs(): ActionsTypes {
-    return { type: "INVERT_INPUTS" };
+  static invertInputs(): ActionTypes {
+    return { type: "INVERT_LANGS" };
   }
 
-  static async translate({ form, language }: State): Promise<ActionsTypes> {
-    const res = await TranslationAPI.translateTo(form.fromText, language.to.id);
-    return { type: "SET_TO_INPUT", payload: res.data || "" };
+  static async translate({ translate: { fromLang, targetLang } }: State): Promise<ActionTypes> {
+    const res = await TranslationAPI.translateTo(fromLang.text, fromLang.code);
+    if (res.success && res.data) {
+      return {
+        type: "SET_TARGET_LANG",
+        payload: { ...targetLang, text: res.data.text },
+      };
+    }
+    return { type: "ERROR", payload: "" };
   }
 
-  static toggleLangsModal(): ActionsTypes {
-    return { type: "CLOSE_LANGS_MODEL" };
-  }
-
-  static toggleFromLangsModal(): ActionsTypes {
-    return { type: "TOGGLE_FROM_LANGS_MODEL" };
-  }
-
-  static toggleToLangsModal(): ActionsTypes {
-    return { type: "TOGGLE_TO_LANGS_MODEL" };
+  static setLangsModal(mode: Toggle["selectLangModal"]): ActionTypes {
+    return { type: "SET_LANGS_MODEL", payload: mode };
   }
 }

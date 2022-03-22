@@ -5,9 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import { TranslationHeaderProps as Props } from "../../types";
 import RightArrowIcon from "../../../../assets/fluencyIcons/RightArrow.svg";
 import GlobeIcon from "../../../../assets/fluencyIcons/Globe.svg";
-import { State } from "../../store/reducer";
 
-const TranslationHeader = ({ language, formLangClick, toLangClick }: Props) => {
+const TranslationHeader = ({ state: { translate }, actions }: Props) => {
   const LangLabel = (props: { text: string; onClick?: () => any }) => (
     <Button variant="text" onClick={() => props.onClick && props.onClick()}>
       <GlobeIcon style={{ margin: "0 8px" }} />
@@ -19,9 +18,15 @@ const TranslationHeader = ({ language, formLangClick, toLangClick }: Props) => {
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center" mt={2}>
-      <LangLabel text={language.from.name} onClick={formLangClick} />
+      <LangLabel
+        text={translate.fromLang.name}
+        onClick={() => actions.formLangClick("setFromLang")}
+      />
       <RightArrowIcon style={{ margin: "0 8px" }} />
-      <LangLabel text={language.to.name} onClick={toLangClick} />
+      <LangLabel
+        text={translate.targetLang.name}
+        onClick={() => actions.targetLangClick("setTargetLang")}
+      />
     </Box>
   );
 };

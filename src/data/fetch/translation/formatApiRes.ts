@@ -12,10 +12,8 @@ export default function formatRequests(path: string, res: any): ResponseType {
   if (path === "/getLanguages") {
     const codes = res.codes as t.LangsData["codes"];
     const codeKeys = Object.keys(codes);
-    res.data = codeKeys.map((key) => [key, codes[key]]);
+    res.data = codeKeys.map((key) => ({ code: key, name: codes[key] }));
   }
-  console.log(path);
-
   if (path === "/translate") {
     res.data = { text: res.translated_text, from: res.from_lang };
   }

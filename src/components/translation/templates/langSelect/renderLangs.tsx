@@ -1,67 +1,30 @@
-import Box from "@material-ui/core/Box";
-import Slide from "@material-ui/core/Slide";
-import { useCallback } from "react";
+import { Box, Zoom } from "@material-ui/core";
+import React from "react";
 
-type Props = {
-  langs: string[][];
-  search: string;
-  onClick: (v: string) => any;
-};
+import * as s from "./styles";
 
-type LangItemProps = {
-  show: boolean;
-  code: string;
-  name: string;
-  onClick: (v: string) => any;
-};
+import { RenderLangsSelectionsProps as Props, LangItemProps } from "../../types";
 
-const LangItem = (props: LangItemProps) => (
-  <Slide direction="left" key={props.code} in={props.show} unmountOnExit>
-    <Box
-      bgcolor="primary.50"
-      m={1}
-      p={1}
-      borderRadius={8}
-      onClick={() => props.onClick && props.onClick(props.code)}
-    >
-      <b>{props.code.toUpperCase()}</b>
-      <Box>{props.name}</Box>
-    </Box>
-  </Slide>
+const LangItem = ({ lang, onClick, show }: LangItemProps) => (
+  <Zoom in={show} key={lang.code} style={{ display: show ? "block" : "none" }}>
+    <s.LangItem onClick={() => onClick && onClick(lang)}>
+      <b>{lang.code.toUpperCase()}</b>
+      <Box>{lang.name.toUpperCase()}</Box>
+    </s.LangItem>
+  </Zoom>
 );
 
 const RenderLangsSelections = ({ langs, search, onClick }: Props) => {
-  const code = 0;
-  const name = 1;
+  const toRender = React.useMemo(() => {
+    const lowerCaseSearch = search.toLowerCase();
 
-  const toRender = useCallback(
-    () =>
-      langs.map((lang) => {
-        const matchSearch = lang.join(" ").includes(search);
-        return (
-          <LangItem
-            show={matchSearch}
-            key={lang[code]}
-            code={lang[code]}
-            name={lang[name]}
-            onClick={onClick}
-          />
-        );
-      }),
-    [search]
-  );
+    return langs.map((lang) => {
+      const matchSearch = (lang.code + " " + lang.name).toLowerCase().includes(lowerCaseSearch);
+      return <LangItem show={matchSearch} lang={lang} onClick={onClick} key={lang.code} />;
+    });
+  }, [search]);
 
-  return (
-    <Box
-      display="grid"
-      gridTemplateColumns="1fr 1fr 1fr"
-      alignContent="flex-start"
-      height={800}
-      paddingBottom={4}
-    >
-      {toRender()}
-    </Box>
-  );
+  return <s.LangGrid>{toRender}</s.LangGrid>;
 };
 
 export default RenderLangsSelections;

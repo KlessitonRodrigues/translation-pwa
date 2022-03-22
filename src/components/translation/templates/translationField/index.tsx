@@ -1,11 +1,7 @@
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 
-type Props = {
-  value?: string;
-  onChange?: (value: string) => void;
-  disabled?: boolean;
-};
+import { TranslationInputProps as Props } from "../../types";
 
 const TranslationInput = ({ value, onChange, disabled = false }: Props) => {
   return (

@@ -2,7 +2,7 @@ import fetchData from "../../fetch/translation";
 import { Responses } from "./types";
 
 export default class TranslationAPI {
-  static langsCache = { success: false, data: [["", ""]] };
+  static langsCache = { success: false, data: [{ code: "", name: "" }] };
 
   static async getSuportedLangs() {
     if (this.langsCache?.success) return { success: true, msg: "", data: this.langsCache.data };
@@ -15,8 +15,6 @@ export default class TranslationAPI {
     const res = await fetchData<Responses["TransRes"]>("/translate", {
       body: new URLSearchParams({ text, from, to }),
     });
-    console.log(res);
-    
     return res;
   }
 
