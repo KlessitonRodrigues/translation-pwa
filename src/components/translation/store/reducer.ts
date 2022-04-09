@@ -3,7 +3,12 @@ import { State, ActionTypes } from "../types";
 export const initialState: State = {
   translate: {
     fromLang: { code: "pt", name: "Portugues", text: "" },
-    targetLang: { code: "en", name: "English", text: "", dictionary: null },
+    targetLang: {
+      code: "en",
+      name: "English",
+      text: "",
+      dictionary: { examples: [], translations: [] },
+    },
   },
   toggle: {
     selectLangModal: "",
@@ -39,7 +44,7 @@ export function reducer(state: State, action: ActionTypes): State {
             code: translate.fromLang.code,
             name: translate.fromLang.name,
             text: translate.fromLang.text,
-            dictionary: null,
+            dictionary: initialState.translate.targetLang.dictionary,
           },
         },
       };

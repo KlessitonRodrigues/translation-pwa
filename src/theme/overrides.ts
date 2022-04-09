@@ -5,7 +5,7 @@ export const overrides: ThemeOptions["overrides"] = {
   MuiInputBase: {
     root: {
       backgroundColor: "white",
-      borderRadius: "9px !important",
+      borderRadius: "8px !important",
     },
   },
   MuiButton: {

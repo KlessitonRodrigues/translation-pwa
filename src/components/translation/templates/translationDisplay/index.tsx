@@ -12,7 +12,7 @@ const RenderDictionary = ({ targetLang }: Props["state"]["translate"]) => {
         <Box color="primary.700" fontWeight="bold">
           {textAsHtml(t.translation)}
         </Box>
-        <Box>{t.reverse.join(" ")}</Box>
+        <Box>{t.reverse.join(", ")}</Box>
       </Box>
     ));
 
@@ -28,14 +28,14 @@ const RenderDictionary = ({ targetLang }: Props["state"]["translate"]) => {
 
   return (
     <Box>
-      {translations && (
+      {translations.length && (
         <Box marginBottom={4}>
           <Typography variant="body2">Translations:</Typography>
           <Box marginLeft={4}>{Translations()}</Box>
         </Box>
       )}
 
-      {examples && (
+      {examples.length && (
         <Box>
           <Typography variant="body2">Examples:</Typography>
           <Box marginLeft={4}>{Examples()}</Box>
@@ -58,7 +58,7 @@ const TranslationDisplay = ({ state: { translate } }: Props) => {
           </s.Translation>
         </Grow>
 
-        <Grow in={!!targetLang.dictionary} unmountOnExit>
+        <Grow in={!!targetLang.dictionary.examples.length} unmountOnExit>
           <s.Dictionary>
             <Typography variant="subtitle2">Dictionary</Typography>
             <s.Divisor />
