@@ -6,13 +6,12 @@ import SearchIcon from "../../../../assets/fluencyIcons/Search.svg";
 import RenderLangsSelections from "./renderLangs";
 import { LangSelectionProps as Props } from "../../types";
 
-export default function LangSelection({ state, actions }: Props) {
+export default function LangSelection({ state: { toggle, ssr }, actions }: Props) {
   const [search, setSearch] = useState("");
 
   return (
     <Dialog
-      open={!!state.toggle.selectLangModal}
-      keepMounted
+      open={!!toggle.selectLangModal}
       scroll="paper"
       fullWidth
       onClose={() => actions.setModel && actions.setModel("")}
@@ -36,9 +35,9 @@ export default function LangSelection({ state, actions }: Props) {
       </DialogTitle>
       <DialogContent>
         <RenderLangsSelections
-          langs={state.ssr.langs}
+          langs={ssr.langs}
           search={search}
-          onClick={() => actions.onClick}
+          onClick={(lang) => actions.onClick && actions.onClick(lang)}
         />
       </DialogContent>
     </Dialog>

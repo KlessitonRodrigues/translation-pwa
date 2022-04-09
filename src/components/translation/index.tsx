@@ -13,7 +13,6 @@ import { TranslationProps as Props } from "./types";
 
 export default function Translation(props: Props) {
   const [state, dispatch] = useReducer(reducer, { ...initialState, ssr: props.ssr });
-
   return (
     <Slide in direction="up">
       <Box width="100%" display="flex" flexDirection="column" margin="auto">
@@ -28,6 +27,10 @@ export default function Translation(props: Props) {
           state={state}
           actions={{
             setModel: (v) => dispatch(Actions.setLangsModal(v)),
+            onClick: (lang) => {
+              dispatch(Actions.handleSelectLangModal(state, lang));
+              dispatch(Actions.setLangsModal(""));
+            },
           }}
         />
         <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
@@ -42,7 +45,7 @@ export default function Translation(props: Props) {
               onTranslate: async () => dispatch(await Actions.translate(state)),
               onClear: () => dispatch(Actions.clearInputs()),
               onInvert: () => dispatch(Actions.invertInputs()),
-              onDicionary: () => {},
+              onDictionary: async () => dispatch(await Actions.getDictionary(state)),
               onSpeak: () => {},
             }}
           />

@@ -4,7 +4,7 @@ import { typography } from "./theme/typography";
 import { overrides } from "./theme/overrides";
 import { palette } from "./theme/palette";
 
-const spacing = (factor: number) => `${factor * 0.25}rem`;
+const spacing = (...factors: number[]) => factors.map((factor) => `${factor * 0.25}rem`).join(" ");
 
 export const theme = createTheme({
   typography,

@@ -1,6 +1,6 @@
 import { Box, styled } from "@material-ui/core";
 
-export const LangGrid = styled(Box)(({ theme: { spacing, palette } }) => ({
+export const LangGrid = styled(Box)(({ theme: { spacing } }) => ({
   display: "grid",
   gridTemplateColumns: "1fr 1fr 1fr",
   alignContent: "flex-start",
@@ -14,4 +14,10 @@ export const LangItem = styled(Box)(({ theme: { spacing, palette } }) => ({
   margin: spacing(2),
   padding: spacing(2),
   borderRadius: 8,
+  cursor: "pointer",
+  transition: "1.2s",
+  "&:hover": {
+    //@ts-ignore
+    backgroundColor: palette.primary[100],
+  },
 }));

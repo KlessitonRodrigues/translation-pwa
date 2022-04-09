@@ -1,6 +1,17 @@
+export type Dictionary = {
+  examples: {
+    source: string[];
+    target: string[];
+  }[];
+  translations: {
+    translation: string;
+    reverse: string[];
+  }[];
+};
+
 export type Translate = {
   fromLang: { code: string; name: string; text: string };
-  targetLang: { code: string; name: string; text: string; dictionary: [] };
+  targetLang: { code: string; name: string; text: string; dictionary: Dictionary };
 };
 
 export type Toggle = {
@@ -47,7 +58,7 @@ export type TranslationButtonsProps = {
     onTranslate: () => any;
     onClear: () => any;
     onInvert: () => any;
-    onDicionary: () => any;
+    onDictionary: () => any;
     onSpeak: () => any;
   };
 };
@@ -56,7 +67,7 @@ export type LangSelectionProps = {
   state: State;
   actions: {
     setModel?: (v: Toggle["selectLangModal"]) => any;
-    onClick?: (code: string) => any;
+    onClick?: (lang: ServerSideRender["langs"][0]) => any;
   };
 };
 

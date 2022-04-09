@@ -19,6 +19,7 @@ async function fetchTranslation<T>(path: string, content?: RequestInit): Promise
 
     return formatRequests(path, data);
   } catch (err) {
+    console.error(err);
     return responseMock;
   }
 }

@@ -3,12 +3,17 @@ import TextField from "@material-ui/core/TextField";
 
 import { TranslationInputProps as Props } from "../../types";
 
-const TranslationInput = ({ value, onChange, disabled = false }: Props) => {
+const TranslationInput = ({ state, actions, disabled = false }: Props) => {
+  const {
+    translate: { fromLang },
+  } = state;
   return (
     <Box width="50%" m={1}>
       <TextField
-        value={value}
-        onChange={(ev) => onChange && onChange(ev.target.value)}
+        value={fromLang.text}
+        onChange={(ev) =>
+          actions.onChange && actions.onChange({ ...fromLang, text: ev.target.value })
+        }
         variant="outlined"
         multiline
         fullWidth

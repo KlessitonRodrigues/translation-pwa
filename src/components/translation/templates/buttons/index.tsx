@@ -37,7 +37,7 @@ export default function Buttons({ actions }: Props) {
         <b>Invert</b>
       </ToggleTextButton>
       <ToggleTextButton
-        onClick={() => actions.onDicionary()}
+        onClick={() => actions.onDictionary()}
         startIcon={<BookIcon />}
         variant="text"
         size="small"
