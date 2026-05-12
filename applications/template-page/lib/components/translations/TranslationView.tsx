@@ -51,7 +51,7 @@ const TranslationView = () => {
         <Row responsive="lg">
           <Column flexX="start" gap={0}>
             <SelectField
-              className="max-w-xs -mb-4"
+              className="max-w-xs"
               options={langOptions}
               defaultValue={watchValue('sourceLanguageCode')}
               onChange={value => setValue('sourceLanguageCode', value)}
@@ -66,7 +66,7 @@ const TranslationView = () => {
           </Column>
           <Column flexX="start" gap={0}>
             <SelectField
-              className="max-w-xs -mb-4"
+              className="max-w-xs"
               options={langOptions}
               defaultValue={watchValue('targetLanguageCode')}
               onChange={value => setValue('targetLanguageCode', value)}
@@ -76,6 +76,7 @@ const TranslationView = () => {
               className="min-h-80"
               placeholder="The translation will appear here..."
               inputProps={{ value: translateResult }}
+              loading={translateTextQuery.isPending}
               disabled
             />
           </Column>
@@ -89,7 +90,7 @@ const TranslationView = () => {
           >
             Traduzir
           </IconButton>
-          <IconButton type="button" outline iconType="brush" onClick={handleClear}>
+          <IconButton type="button" mode="outline" iconType="brush" onClick={handleClear}>
             Limpar
           </IconButton>
         </Row>
