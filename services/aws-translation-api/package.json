@@ -1,5 +1,5 @@
 {
-  "name": "@services/aws-translation-api",
+  "name": "aws-translation-api",
   "version": "0.1.0",
   "scripts": {
     "dev": "nodemon src/config/localApi.ts",
@@ -21,13 +21,11 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.2.3",
     "aws-cdk": "2.1106.0",
-    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
     "cors": "^2.8.5",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jest": "^30.2.0",
-    "jsonwebtoken": "^9.0.3",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
@@ -35,12 +33,10 @@
     "typescript": "~5.9.3"
   },
   "dependencies": {
-    "@aws-sdk/client-translate": "^3.991.0",
-    "@aws-sdk/client-dynamodb": "^3.991.0",
-    "@aws-sdk/lib-dynamodb": "^3.991.0",
+    "@aws-sdk/client-translate": "^3.1045.0",
     "@packages/common-types": "./packages/common-types",
-    "aws-cdk-lib": "^2.238.0",
-    "constructs": "^10.5.0"
+    "aws-cdk-lib": "2.137.0",
+    "constructs": "^10.3.0"
   },
   "peerDependencies": {
     "aws-cdk-lib": "2.137.0",

@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 
-import { LandingPageTemplateApp } from './templateApp';
+import { TranslationAppPage } from './templateApp';
 
 const app = new cdk.App();
 
-new LandingPageTemplateApp(app);
+new TranslationAppPage(app);

@@ -17,7 +17,7 @@ export const resourceNames = {
   translateTextLambda: dotenv.STACK_NAME + '-translate-text-lambda',
 };
 
-export const lambdaPackages = ['jsonwebtoken', 'bcrypt', 'zod'];
+export const lambdaPackages = ['zod'];
 
 export const apiOrigins = [
   dotenv.AUTH_APP_URL,

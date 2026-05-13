@@ -4,10 +4,10 @@ import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3Deploy from 'aws-cdk-lib/aws-s3-deployment';
 
-const appName = 'LandingPageTemplate';
-const appPath = '../../applications/template-page/out';
+const appName = 'TranslationAppPage';
+const appPath = '../../applications/translation-app/out';
 
-export class LandingPageTemplateApp extends cdk.Stack {
+export class TranslationAppPage extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
     super(scope, `${appName}Stack`, props);
 

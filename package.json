@@ -15,9 +15,20 @@
     "turbo": "^2.8.13"
   },
   "packageManager": "yarn@1.22.22",
-  "workspaces": [
-    "applications/*",
-    "packages/*",
-    "services/*"
-  ]
+  "workspaces": {
+    "packages": [
+      "applications/*",
+      "packages/*",
+      "services/*"
+    ],
+    "nohoist": [
+      "**/@aws-sdk/**",
+      "**/aws-cdk",
+      "**/aws-cdk/**",
+      "**/aws-cdk-lib",
+      "**/aws-cdk-lib/**",
+      "**/constructs",
+      "**/constructs/**"
+    ]
+  }
 }
