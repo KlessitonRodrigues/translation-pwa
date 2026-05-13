@@ -12,13 +12,15 @@ applyTo: "**/*.tsx, **/*.jsx"
 - Uses the `twMerge` utility to ensure correct class merging.
 - Avoid commenting code that is necessary for the component's functionality.
 
+## Example Button Component
+
 ```tsx
 import { twMerge } from "tailwind-merge";
 
-// (value: any, str: string, str2?: string) => (value ? str : str2 || '');
+// Must to use toCss utility to boolean conditions for class names
 import { toCss } from "../../utils/strings";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps {
   className?: string;
   label?: string;
   color?:
@@ -34,13 +36,14 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   variant?: "wide" | "block" | "square" | "circle";
   mode?: "ghost" | "outline" | "link";
   loading?: boolean;
+  onClick?: () => void;
+  disabled?: boolean;
+  btnProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
 }
 
 // Must to allways declare component properties as props
 export const Button = (props: ButtonProps) => {
-  // Props related to component style do not need to be extracted.
-  const { loading, label, children, ...btnProps } = props;
-  const {} = props;
+  // const {} = props; If there is more than 3 properties, it's better to use props.x instead of destructuring
 
   // Must use array and twMerge to ensure correct order of classes for tailwind-merge
   const btnStyles = twMerge([
@@ -57,9 +60,14 @@ export const Button = (props: ButtonProps) => {
   ]);
 
   return (
-    <button className={btnStyles} disabled={loading} {...btnProps}>
-      {loading && <span className="loading loading-spinner loading-xs" />}
-      {label || children}
+    <button
+      className={btnStyles}
+      disabled={props.loading}
+      onClick={props.onClick}
+      {...props.btnProps}
+    >
+      {props.loading && <span className="loading loading-spinner loading-xs" />}
+      {props.label || props.children}
     </button>
   );
 };

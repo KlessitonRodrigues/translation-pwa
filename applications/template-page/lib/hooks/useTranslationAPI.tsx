@@ -7,7 +7,7 @@ import { useState } from 'react';
 import queryClient from '../config/queryClient';
 import { translateText } from '../services/translation';
 
-const langOptionsArr = [
+const langOptions = [
   { value: 'auto', label: 'Detectar idioma' },
   { value: 'pt', label: 'Português' },
   { value: 'en', label: 'English' },
@@ -17,11 +17,13 @@ const langOptionsArr = [
   { value: 'zh', label: '中文' },
   { value: 'ja', label: '日本語' },
   { value: 'ko', label: '한국어' },
+  { value: 'it', label: 'Italiano' },
+  { value: 'ru', label: 'Русский' },
+  { value: 'ar', label: 'العربية' },
 ];
 
 const useTranslationAPI = () => {
   const [translateResult, setTranslateResult] = useState('');
-  const [langOptions, setLangOptions] = useState(langOptionsArr);
 
   const handleTranslateText = {
     enabled: false,

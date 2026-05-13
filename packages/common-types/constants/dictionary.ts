@@ -21,6 +21,7 @@ export const dictionaries = {
     INVALID_RECOVERY_CODE: "Invalid recovery code",
     EXPIRED_RECOVERY_CODE: "Expired recovery code",
     MISSING_EMAIL_OR_CODE: "Missing email or code",
+    MAXIMUM_LENGTH_EXCEEDED: "Maximum length exceeded",
   },
   pt: {
     REQUIRED: "Campo obrigatório",
@@ -44,5 +45,6 @@ export const dictionaries = {
     INVALID_RECOVERY_CODE: "Código de recuperação inválido",
     EXPIRED_RECOVERY_CODE: "Código de recuperação expirado",
     MISSING_EMAIL_OR_CODE: "Email ou código ausente",
+    MAXIMUM_LENGTH_EXCEEDED: "Comprimento máximo excedido",
   },
 };
