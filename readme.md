@@ -1,5 +1,3 @@
-### Landing Page Templates
+### Translation Page
 
-#### Template 1
-
-https://djzuplelkcucg.cloudfront.net/
+d2zk0yjdtgvfp5.cloudfront.net
