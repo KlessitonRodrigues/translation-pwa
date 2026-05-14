@@ -8,7 +8,7 @@ import { lambdaPackages, resourceNames } from '../../../contants/resources';
 export class TranslateTextLambda extends nodeLambda.NodejsFunction {
   constructor(scope: cdk.Stack, lambdaEnv: AWS.LambdasProps, logGroup?: cdk.aws_logs.LogGroup) {
     const params: nodeLambda.NodejsFunctionProps = {
-      runtime: lambda.Runtime.NODEJS_22_X,
+      runtime: lambda.Runtime.NODEJS_20_X,
       timeout: cdk.Duration.seconds(10),
       handler: 'handler',
       functionName: resourceNames.translateTextLambda,

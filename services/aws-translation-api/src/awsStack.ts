@@ -40,7 +40,7 @@ export class NodeTemplateStack extends cdk.Stack {
 
     translateTextLambda.addToRolePolicy(
       new iam.PolicyStatement({
-        actions: ['translate:TranslateText'],
+        actions: ['translate:TranslateText', 'comprehend:DetectDominantLanguage'],
         resources: ['*'],
       }),
     );
