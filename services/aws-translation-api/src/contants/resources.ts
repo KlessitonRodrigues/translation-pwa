@@ -15,6 +15,8 @@ export const resourceNames = {
   verifyRecoveryCodeLambda: dotenv.STACK_NAME + '-verify-recovery-code-lambda',
   resetPasswordLambda: dotenv.STACK_NAME + '-reset-password-lambda',
   translateTextLambda: dotenv.STACK_NAME + '-translate-text-lambda',
+  gatewayKey: dotenv.STACK_NAME + '-gateway-key',
+  gatewayUsagePlan: dotenv.STACK_NAME + '-gateway-usage-plan',
 };
 
 export const lambdaPackages = ['zod'];

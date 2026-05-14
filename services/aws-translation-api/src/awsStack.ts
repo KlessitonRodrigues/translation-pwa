@@ -9,6 +9,7 @@ import { TranslateTextLambda } from './lib/lambdas/translateText/lambda';
 import { resourceNames } from './contants/resources';
 import dotenv from './contants/dotenv';
 import { TranslateAPIGateway } from './lib/gateway/translateAPI';
+import { setGatewayRateLimiting } from './utils/api/addRateLimit';
 
 export class NodeTemplateStack extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
@@ -31,12 +32,16 @@ export class NodeTemplateStack extends cdk.Stack {
 
     // API Gateway
     const translateApi = new TranslateAPIGateway(this);
+    setGatewayRateLimiting(this, translateApi, 1000);
 
     // API Routes
     // /translate/text
     const translateRoute = translateApi.root.addResource('translate');
     const translateTextRoute = translateRoute.addResource('text');
-    translateTextRoute.addMethod('POST', new gateway.LambdaIntegration(translateTextLambda));
+
+    translateTextRoute.addMethod('POST', new gateway.LambdaIntegration(translateTextLambda), {
+      apiKeyRequired: true,
+    });
 
     translateTextLambda.addToRolePolicy(
       new iam.PolicyStatement({
