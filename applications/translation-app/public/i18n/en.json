@@ -7,5 +7,6 @@
   "translator.textPlaceholder": "Type the text you want to translate here...",
   "translator.resultPlaceholder": "The translation will appear here...",
   "translator.translateButton": "Translate",
-  "translator.clearButton": "Clear"
+  "translator.clearButton": "Clear",
+  "translator.detectLanguage": "Detect language"
 }

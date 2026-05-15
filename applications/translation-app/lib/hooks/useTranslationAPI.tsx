@@ -8,7 +8,6 @@ import queryClient from '../config/queryClient';
 import { translateText } from '../services/translation';
 
 const langOptions = [
-  { value: 'auto', label: 'Detectar idioma' },
   { value: 'pt', label: 'Português' },
   { value: 'en', label: 'English' },
   { value: 'es', label: 'Español' },

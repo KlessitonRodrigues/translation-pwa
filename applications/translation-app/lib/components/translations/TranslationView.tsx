@@ -16,7 +16,7 @@ import {
 } from '@packages/daisy-ui-components';
 
 const initialData = {
-  text: 'Hello! I am a translator.',
+  text: 'Hello! I am a translator and this is a translation example from English to any other language your chose.',
   sourceLanguageCode: 'auto',
   targetLanguageCode: 'pt',
 };
@@ -29,11 +29,9 @@ const TranslationView = () => {
     translateTextSchema,
     initialData,
   );
-  const textFieldValue = watchValue('text');
+  const handleTranslate = (data: any) => translateTextQuery.mutate(data);
 
-  const handleTranslate = (data: any) => {
-    translateTextQuery.mutate(data);
-  };
+  const textFieldValue = watchValue('text');
 
   return (
     <Form onSubmit={handleSubmit(handleTranslate)}>
@@ -45,10 +43,11 @@ const TranslationView = () => {
             <Column flexX="start" gap={0}>
               <SelectField
                 className="max-w-xs"
-                options={langOptions}
+                options={[{ value: 'auto', label: t('translator.detectLanguage') }]}
                 defaultValue={watchValue('sourceLanguageCode')}
-                onChange={value => setValue('', value)}
+                onChange={value => setValue('sourceLanguageCode', value)}
                 error={errors.sourceLanguageCode?.message as string}
+                disabled
               />
               <AreaInputField
                 className="min-h-100"
