@@ -17,13 +17,6 @@ export class TranslationAppPage extends cdk.Stack {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
-      cors: [
-        {
-          allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.HEAD],
-          allowedOrigins: ['*'],
-          allowedHeaders: ['*'],
-        },
-      ],
     });
 
     // Create Origin Access Identity for CloudFront
@@ -64,8 +57,8 @@ export class TranslationAppPage extends cdk.Stack {
           originAccessIdentity: originAccessIdentity,
         }),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
-        cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD_OPTIONS,
+        allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD,
+        cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD,
         compress: true,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
         functionAssociations: [
@@ -109,12 +102,6 @@ export class TranslationAppPage extends cdk.Stack {
       value: distribution.distributionDomainName,
       description: 'CloudFront Distribution Domain Name',
       exportName: `${appName}DomainName`,
-    });
-
-    new cdk.CfnOutput(this, `${appName}DistributionURL`, {
-      value: `https://${distribution.distributionDomainName}`,
-      description: 'CloudFront Distribution URL',
-      exportName: `${appName}URL`,
     });
 
     new cdk.CfnOutput(this, `${appName}BucketName`, {
