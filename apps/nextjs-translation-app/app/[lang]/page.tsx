@@ -1,5 +1,5 @@
-import TranslationView from '@/lib/components/translations/TranslationView';
-import { Page, PageContent } from '@packages/daisy-ui-components';
+import TranslationView from '@/src/components/translations/translation.view';
+import { Page, PageContent } from '@apps/daisy-ui-storybook';
 
 export default async function TemplatePage() {
   return (

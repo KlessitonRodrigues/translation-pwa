@@ -1,5 +1,5 @@
-import { ReadSettings } from '@packages/daisy-ui-components';
-import '@packages/daisy-ui-components/global.css';
+import { ReadSettings } from '@apps/daisy-ui-storybook';
+import '@apps/daisy-ui-storybook/global.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { PropsWithChildren } from 'react';

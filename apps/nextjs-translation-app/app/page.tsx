@@ -1,4 +1,4 @@
-import { LoadScreen } from '@packages/daisy-ui-components';
+import { LoadScreen } from '@apps/daisy-ui-storybook';
 import { Suspense } from 'react';
 
 export default function RootPage() {

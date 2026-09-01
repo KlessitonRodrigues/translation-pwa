@@ -1,7 +1,8 @@
 'use client';
-import { useClientTranslations } from '@/lib/hooks/useClientTranslation';
-import { useFormSchema } from '@/lib/hooks/useFormSchema';
-import useTranslationAPI from '@/lib/hooks/useTranslationAPI';
+import useTranslationAPI from '@/src/hooks/hook.use.translation.api';
+import { useClientTranslations } from '@/src/hooks/hooks.use.client.translation';
+import { useFormSchema } from '@/src/hooks/hooks.use.form.schema';
+import { translateTextSchema } from '@/src/schemas/schema.translation';
 import {
   AreaInputField,
   Column,
@@ -21,8 +22,7 @@ const initialData = {
 };
 
 const TranslationView = () => {
-  const { t, lang } = useClientTranslations();
-  const { translateTextSchema } = createTranslateSchemas({ lang });
+  const { t } = useClientTranslations();
   const { langOptions, translateTextQuery, translateResult } = useTranslationAPI();
   const { register, handleSubmit, setValue, watchValue, errors } = useFormSchema(
     translateTextSchema,

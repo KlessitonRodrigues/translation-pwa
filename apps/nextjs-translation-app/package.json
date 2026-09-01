@@ -1,5 +1,5 @@
 {
-  "name": "@apps/translation-app",
+  "name": "@apps/nextjs-translation-app",
   "version": "0.1.0",
   "private": true,
   "type": "module",

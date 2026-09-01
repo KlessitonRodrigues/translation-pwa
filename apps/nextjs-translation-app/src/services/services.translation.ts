@@ -1,4 +1,4 @@
-import { translationApiClient } from '../config/axiosClient';
+import { translationApiClient } from '../config/config.axios';
 
 export const translateText = async (data: any) => {
   try {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import dotenv from '../constants/dotenv';
+import dotenv from '../constants/constants.dotenv';
 
 export const translationApiClient = axios.create({
   baseURL: dotenv.TRANSLATION_API_URL,

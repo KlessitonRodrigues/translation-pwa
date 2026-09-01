@@ -2,17 +2,17 @@ import {
   generateStaticParams,
   setTranslationEnv,
   useServerTranslations,
-} from '@/lib/hooks/useServerTranslation';
+} from '@/src/hooks/hook.use.server.translation';
 import {
   Icons,
   LangSettings,
   LoadScreen,
+  NavbarTop,
   Row,
   Text,
   ThemeSettings,
   Toastify,
-  TopNavBar,
-} from '@packages/daisy-ui-components';
+} from '@apps/daisy-ui-storybook';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
@@ -32,7 +32,7 @@ export default async function PageLayout(props: any) {
 
   return (
     <Suspense fallback={<LoadScreen />}>
-      <TopNavBar
+      <NavbarTop
         leftComponent={
           <Row gap={4}>
             <Icons iconType="translate" iconSize="1.8rem" />

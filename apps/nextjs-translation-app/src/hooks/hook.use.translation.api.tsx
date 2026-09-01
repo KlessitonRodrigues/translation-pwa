@@ -1,11 +1,11 @@
 'use client';
 
-import { errorToast } from '@packages/daisy-ui-components';
+import { errorToast } from '@apps/daisy-ui-storybook';
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 
-import queryClient from '../config/queryClient';
-import { translateText } from '../services/translation';
+import queryClient from '../config/config.tanstack';
+import { translateText } from '../services/services.translation';
 
 const langOptions = [
   { value: 'pt', label: 'Português' },
