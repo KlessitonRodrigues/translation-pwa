@@ -1,5 +1,5 @@
 {
-  "name": "@applications/translation-app",
+  "name": "@apps/translation-app",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -13,7 +13,8 @@
   "dependencies": {
     "next": "16.1.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "@apps/daisy-ui-storybook": "*"
   },
   "devDependencies": {
     "@hookform/resolvers": "^5.2.2",

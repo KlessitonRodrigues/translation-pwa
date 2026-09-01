@@ -2,7 +2,6 @@
 import { useClientTranslations } from '@/lib/hooks/useClientTranslation';
 import { useFormSchema } from '@/lib/hooks/useFormSchema';
 import useTranslationAPI from '@/lib/hooks/useTranslationAPI';
-import { createTranslateSchemas } from '@packages/common-types';
 import {
   AreaInputField,
   Column,
@@ -13,7 +12,7 @@ import {
   SelectField,
   Text,
   TitleIcon,
-} from '@packages/daisy-ui-components';
+} from '@apps/daisy-ui-storybook';
 
 const initialData = {
   text: 'Hello! I am a translator and this is a translation example from English to any other language your chose.',
