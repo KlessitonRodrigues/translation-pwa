@@ -1,3 +1,6 @@
 [submodule "packages/daisy-ui-components"]
 	path = packages/daisy-ui-components
 	url = git@github.com:KlessitonRodrigues/daisy-ui-components.git
+[submodule "apps/daisy-ui-storybook"]
+	path = apps/daisy-ui-storybook
+	url = git@github.com:KlessitonRodrigues/daisy-ui-components.git
