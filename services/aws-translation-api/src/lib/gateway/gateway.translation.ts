@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as gateway from 'aws-cdk-lib/aws-apigateway';
 
-import { resourceNames } from '../../contants/resources';
+import { resourceNames } from '../../constants/constants.resources';
 
 export class TranslateAPIGateway extends gateway.RestApi {
   constructor(scope: cdk.Stack) {

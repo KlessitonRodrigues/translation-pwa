@@ -2,7 +2,7 @@
   "name": "aws-translation-api",
   "version": "0.1.0",
   "scripts": {
-    "dev": "nodemon src/config/localApi.ts",
+    "dev": "nodemon src/config/config.express.ts",
     "cdk": "cdk",
     "cdk-synt": "cdk synthesize",
     "cdk-deploy": "cdk deploy",
@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "@aws-sdk/client-translate": "^3.1045.0",
-    "@packages/common-types": "./packages/common-types",
     "aws-cdk-lib": "2.137.0",
     "constructs": "^10.3.0"
   },

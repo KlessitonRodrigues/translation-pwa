@@ -1,7 +1,7 @@
-import './dotenv'; // sort-imports-ignore
+import './config.dotenv'; // sort-imports-ignore
 
-import { handler as translateText } from '../lib/lambdas/translateText/handler';
-import { createLambdaEvent } from '../utils/api/localApi';
+import { translationService } from '../lib/lambdas/translate/translate.services';
+import { createLambdaEvent } from '../utils/utils.express';
 
 const express = require('express');
 const cors = require('cors');
@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const localRoutes = () => {
   const router = express.Router();
 
-  router.post('/translate/text', createLambdaEvent(translateText));
+  router.post('/translate/text', createLambdaEvent(translationService));
   return router;
 };
 

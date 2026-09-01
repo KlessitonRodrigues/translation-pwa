@@ -1,3 +1,5 @@
+import '../config/config.dotenv';
+
 const dotenv = {
   STACK_NAME: process.env.STACK_NAME || '',
   AWS_REGION: process.env.AWS_REGION || '',

@@ -1,8 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as gateway from 'aws-cdk-lib/aws-apigateway';
 
-import dotenv from '../../contants/dotenv';
-import { resourceNames } from '../../contants/resources';
+import { resourceNames } from '../constants/constants.resources';
 
 // API quota: maximum X requests per day.
 export const setGatewayRateLimiting = (stack: cdk.Stack, api: gateway.RestApi, perDay: number) => {

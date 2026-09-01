@@ -1,7 +1,8 @@
-import { AWS } from '@packages/common-types';
 import { Request, Response } from 'express';
 
-export const createLambdaEvent = (lambda: AWS.APIGatewayHandler) => {
+import { APIGatewayHandler } from './utils.lambda';
+
+export const createLambdaEvent = (lambda: APIGatewayHandler) => {
   return async (req: Request, res: Response) => {
     const lambdaResponse = await lambda({
       resource: req.path,

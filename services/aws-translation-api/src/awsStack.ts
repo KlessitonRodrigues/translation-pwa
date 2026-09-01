@@ -1,15 +1,14 @@
-import './config/dotenv'; // sort-imports-ignore
+import './config/config.dotenv'; // sort-imports-ignore
+import { TranslateLambda } from './lib/lambdas/translate/translate.lambda';
 
 import * as cdk from 'aws-cdk-lib';
 import * as gateway from 'aws-cdk-lib/aws-apigateway';
 import * as iam from 'aws-cdk-lib/aws-iam';
-
-import { addCorsPreflight } from './utils/api/preflightResponse';
-import { TranslateTextLambda } from './lib/lambdas/translateText/lambda';
-import { resourceNames } from './contants/resources';
-import dotenv from './contants/dotenv';
-import { TranslateAPIGateway } from './lib/gateway/translateAPI';
-import { setGatewayRateLimiting } from './utils/api/addRateLimit';
+import dotenv from './constants/constants.dotenv';
+import { resourceNames } from './constants/constants.resources';
+import { TranslateAPIGateway } from './lib/gateway/gateway.translation';
+import { setGatewayRateLimiting } from './utils/utils.gateway';
+import { addCorsPreflight } from './utils/utils.lambda';
 
 export class NodeTemplateStack extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
@@ -28,7 +27,7 @@ export class NodeTemplateStack extends cdk.Stack {
       SECRET_KEY: dotenv.SECRET_KEY,
     };
 
-    const translateTextLambda = new TranslateTextLambda(this, lambdaEnv, logGroup);
+    const translateTextLambda = new TranslateLambda(this, lambdaEnv, logGroup);
 
     // API Gateway
     const translateApi = new TranslateAPIGateway(this);
